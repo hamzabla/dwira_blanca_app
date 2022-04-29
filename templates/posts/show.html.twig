@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title post.title %}
+
+
+{% block body %}
+
+<article>
+  <h1>{{ post.title }}</h1>
+   <h3>{{ post.miniTitle }}</h3>
+      <h3>{{ post.OneWordPov }} and {{ post.mark }}/10 </h3>
+      <p>Location : {{ post.location }}</p>
+      <div>
+      {{ post.reviewArticle }}
+      </div>
+</article>
+<a href="{{  path('app_posts') }}">Go Back</a>
+{% endblock %}

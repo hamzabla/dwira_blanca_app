@@ -4,16 +4,10 @@
 
 
 {% block body %}
-   <h1> {{ pluriel(posts|length,'Pin','Pins') }} </h1>
+   <h1> {{ pluriel(posts|length,'Post','Posts') }} </h1>
    <article>
    {% for post in posts %}
-      <h2>{{ post.title }}</h2>
-      <h3>{{ post.miniTitle }}</h3>
-      <h3>{{ post.OneWordPov }} and {{ post.mark }}/10 </h3>
-      <p>Location : {{ post.location }}</p>
-      <div>
-      {{ post.reviewArticle }}
-      </div>
+      <h2><a href="{{  path('app_posts_details',{id: post.id }) }}">{{ post.title }}</a></h2>
       {% endfor %}
    </article>
 {% endblock %}
