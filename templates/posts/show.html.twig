@@ -14,7 +14,6 @@
       {{ post.reviewArticle }}
       </div>
 </article>
-<a href="{{  path('app_posts') }}">Go Back</a> |
 <a href="{{  path('app_posts_edit',{id: post.id}) }}">Edit</a> |
 <a href="#" onclick="event.preventDefault(); confirm('Are you sure?') && document.getElementById('js-post-delete-form').submit(); ">Delete</a>
 

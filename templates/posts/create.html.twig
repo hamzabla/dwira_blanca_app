@@ -4,14 +4,23 @@
 
 
 {% block body %}
-   <h1> Create Pin</h1>
+ 
+     <div class="row">
+         <div class="col-md-6 mx-auto">
+      
+      <h1> Create Post</h1>
    
-   {{ form_start(formPosts)}}
+      {{ form_start(formPosts)}}
       
       {{ form_widget(formPosts)}}
 
-      <input type="submit" value="Create Post" formnovalidate>
-   {{ form_end(formPosts)}}
+      <input type="submit" value="Create Post" class="btn btn-primary">
+      {{ form_end(formPosts)}}
+
+         </div>
+     </div>
+ 
+   
 
 {% endblock %}
  

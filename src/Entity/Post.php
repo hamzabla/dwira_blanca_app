@@ -7,6 +7,7 @@ use App\Repository\PostRepository;
 use DateTime;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: PostRepository::class)]
 #[ORM\HasLifecycleCallbacks]
@@ -20,9 +21,12 @@ class Post
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(min :3)]
     private $title;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank]
     private $mini_title;
 
     #[ORM\Column(type: 'string', length: 255)]
@@ -32,9 +36,11 @@ class Post
     private $mark;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank]
     private $location;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank]
     private $review_article;
 
 
@@ -48,7 +54,7 @@ class Post
         return $this->title;
     }
 
-    public function setTitle(string $title): self
+    public function setTitle(?string $title): self
     {
         $this->title = $title;
 
@@ -60,7 +66,7 @@ class Post
         return $this->mini_title;
     }
 
-    public function setMiniTitle(string $mini_title): self
+    public function setMiniTitle(?string $mini_title): self
     {
         $this->mini_title = $mini_title;
 
@@ -96,7 +102,7 @@ class Post
         return $this->location;
     }
 
-    public function setLocation(string $location): self
+    public function setLocation(?string $location): self
     {
         $this->location = $location;
 
@@ -108,7 +114,7 @@ class Post
         return $this->review_article;
     }
 
-    public function setReviewArticle(string $review_article): self
+    public function setReviewArticle(?string $review_article): self
     {
         $this->review_article = $review_article;
 
