@@ -8,6 +8,7 @@
    <article>
    {% for post in posts %}
       <h2><a href="{{  path('app_posts_details',{id: post.id }) }}">{{ post.title }}</a></h2>
+      <p>Submitted at {{ post.createdAt|ago }}</p>
       {% endfor %}
    </article>
 {% endblock %}
