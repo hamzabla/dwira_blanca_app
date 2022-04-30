@@ -68,4 +68,15 @@ class PostsController extends AbstractController
         'formEditPost' => $form->createView()
       ]);
     }
+
+    #[Route('/posts/{id<[0-9]+>}', name: 'app_posts_delete', methods:'DELETE')]
+    public function delete(Post $post,EntityManagerInterface $em,Request $request): Response
+    {
+      if($this->isCsrfTokenValid('post_deletion'.$post->getId(), $request->request->get('csrf_token'))){
+        $em->remove($post);
+        $em->flush();
+      }
+    
+    return $this->redirectToRoute('app_posts');
+    }
 }

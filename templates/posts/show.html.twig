@@ -15,5 +15,11 @@
       </div>
 </article>
 <a href="{{  path('app_posts') }}">Go Back</a> |
-<a href="{{  path('app_posts_edit',{id: post.id}) }}">Edit</a>
+<a href="{{  path('app_posts_edit',{id: post.id}) }}">Edit</a> |
+<a href="#" onclick="event.preventDefault(); confirm('Are you sure?') && document.getElementById('js-post-delete-form').submit(); ">Delete</a>
+
+<form id="js-post-delete-form" action="{{  path('app_posts_delete',{id: post.id}) }}" method="post" style="display:none;"> 
+  <input type="hidden" name="csrf_token" value="{{ csrf_token('post_deletion'~ post.id) }}">
+  <input type="hidden" name="_method" value="DELETE">
+</form>
 {% endblock %}
