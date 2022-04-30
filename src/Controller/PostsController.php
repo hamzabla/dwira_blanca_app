@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Post;
+use App\Form\PostType;
 use App\Repository\PostRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -26,25 +27,7 @@ class PostsController extends AbstractController
     public function create(Request $request,EntityManagerInterface $em): Response
     {
       $post = new Post;
-      $form= $this->createFormBuilder($post)
-       ->add('title',TextType::class)
-       ->add('mini_title',TextType::class)
-       ->add('One_word_pov',ChoiceType::class,[
-        'choices'  => [
-          'Good' => 'Good',
-          'Average' => 'Average',
-          'Bad' => 'Bad',
-        ],])
-       ->add('mark',ChoiceType::class,[
-         'choices' => [
-           '10'=> '10',
-           '5' =>'5',
-           '1'=> '1',
-         ]
-       ,])
-       ->add('location',TextType::class)
-       ->add('review_article',TextareaType::class)
-       ->getForm();
+      $form= $this->createForm(PostType::class,$post);
 
        $form->handleRequest($request);
 
@@ -69,25 +52,8 @@ class PostsController extends AbstractController
     #[Route('/posts/{id<[0-9]+>}/edit}', name: 'app_posts_edit', methods:'GET|POST')]
     public function edit(Post $post,EntityManagerInterface $em,Request $request): Response
     {
-      $form= $this->createFormBuilder($post)
-      ->add('title',TextType::class)
-      ->add('mini_title',TextType::class)
-      ->add('One_word_pov',ChoiceType::class,[
-       'choices'  => [
-         'Good' => 'Good',
-         'Average' => 'Average',
-         'Bad' => 'Bad',
-       ],])
-      ->add('mark',ChoiceType::class,[
-        'choices' => [
-          '10'=> '10',
-          '5' =>'5',
-          '1'=> '1',
-        ]
-      ,])
-      ->add('location',TextType::class)
-      ->add('review_article',TextareaType::class)
-      ->getForm();
+      
+      $form= $this->createForm(PostType::class, $post);
 
       $form->handleRequest($request);
 
