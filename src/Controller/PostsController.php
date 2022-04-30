@@ -13,7 +13,7 @@ class PostsController extends AbstractController
     #[Route('/', name: 'app_posts')]
     public function index(PostRepository $postRepository): Response
     {
-        $post = $postRepository->findAll();
+        $post = $postRepository->findBy([],['createdAt'=>'DESC']);
         return $this->render('posts/index.html.twig', ['posts' => $post]);
     }
 
