@@ -5,6 +5,13 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
     </head>
     <body>
+    <nav>
+      <ul>
+         <li><a href="{{  path('app_posts')}}">Home</a></li>
+          <li><a href="{{  path('app_posts_create')}}">New Post</a></li>
+         
+      </ul>
+    </nav>
         {% block body %}{% endblock %}
     </body>
 </html>
