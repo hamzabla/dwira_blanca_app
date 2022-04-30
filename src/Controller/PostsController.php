@@ -65,4 +65,41 @@ class PostsController extends AbstractController
     {
       return $this->render('posts/show.html.twig', compact('post'));
     }
+
+    #[Route('/posts/{id<[0-9]+>}/edit}', name: 'app_posts_edit', methods:'GET|POST')]
+    public function edit(Post $post,EntityManagerInterface $em,Request $request): Response
+    {
+      $form= $this->createFormBuilder($post)
+      ->add('title',TextType::class)
+      ->add('mini_title',TextType::class)
+      ->add('One_word_pov',ChoiceType::class,[
+       'choices'  => [
+         'Good' => 'Good',
+         'Average' => 'Average',
+         'Bad' => 'Bad',
+       ],])
+      ->add('mark',ChoiceType::class,[
+        'choices' => [
+          '10'=> '10',
+          '5' =>'5',
+          '1'=> '1',
+        ]
+      ,])
+      ->add('location',TextType::class)
+      ->add('review_article',TextareaType::class)
+      ->getForm();
+
+      $form->handleRequest($request);
+
+      if($form->isSubmitted() && $form->isValid()){
+         $em->flush();
+         return $this->redirectToRoute('app_posts');
+
+      }
+
+      return $this->render('posts/edit.html.twig', [
+        'post' =>$post,
+        'formEditPost' => $form->createView()
+      ]);
+    }
 }

@@ -14,5 +14,6 @@
       {{ post.reviewArticle }}
       </div>
 </article>
-<a href="{{  path('app_posts') }}">Go Back</a>
+<a href="{{  path('app_posts') }}">Go Back</a> |
+<a href="{{  path('app_posts_edit',{id: post.id}) }}">Edit</a>
 {% endblock %}
