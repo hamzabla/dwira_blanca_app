@@ -9,11 +9,11 @@
 <article>
  
 <article class="bg-white rounded shadow post">
-   <div class="mw-100 overflow-hidden">
+   <div class="mw-100 rounded-top overflow-hidden">
    {% if post.imageName %}
-      <a href="{{  path('app_posts_details',{id: post.id }) }}"><img src="{{  vich_uploader_asset(post) | imagine_filter('squard_med') }}" alt="{{ post.title }}" class="w-100 rounded-top"></a>  
+      <a href="{{  path('app_posts_details',{id: post.id }) }}"><img src="{{  vich_uploader_asset(post) | imagine_filter('squard_med') }}" alt="{{ post.title }}" class="w-100 "></a>  
       {% else %}
-       <a href="{{  path('app_posts_details',{id: post.id }) }}"><img src="{{  asset('images/placeholder.jpg') | imagine_filter('squard_med') }}" alt="{{ post.title }}" class="w-100 rounded-top"></a>
+       <a href="{{  path('app_posts_details',{id: post.id }) }}"><img src="{{  asset('images/placeholder.jpg') | imagine_filter('squard_med') }}" alt="{{ post.title }}" class="w-100 "></a>
       {% endif %}
       </div>
       <h2 class="h5 ps-5 pt-3 text-secondary text-muted">{{ post.title }}</h2> 
