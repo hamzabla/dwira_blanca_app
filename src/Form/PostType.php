@@ -22,6 +22,7 @@ class PostType extends AbstractType
             'delete_label' => 'delete',
             'download_uri' => false,
             'image_uri' => true,
+            'imagine_pattern' => 'squard_sm'
         ])
             ->add('title')
             ->add('mini_title')
