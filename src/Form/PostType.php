@@ -8,12 +8,21 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class PostType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+        ->add('imageFile', VichImageType::class, [
+            'label' => 'Insert Image place here',
+            'required' => false,
+            'allow_delete' => true,
+            'delete_label' => 'delete',
+            'download_uri' => false,
+            'image_uri' => true,
+        ])
             ->add('title')
             ->add('mini_title')
             ->add('One_word_pov',ChoiceType::class,[
