@@ -4,18 +4,37 @@
 
 
 {% block body %}
-
+<div class="row">
+<div class="col-md-6 mx-auto">
 <article>
-  <h1>{{ post.title }}</h1>
-   <h3>{{ post.miniTitle }}</h3>
-      <h3>{{ post.OneWordPov }} and {{ post.mark }}/10 </h3>
-      <p>Location : {{ post.location }}</p>
-      <div>
+ 
+<article class="bg-white rounded shadow post">
+   <div class="mw-100 overflow-hidden">
+   {% if post.imageName %}
+      <a href="{{  path('app_posts_details',{id: post.id }) }}"><img src="{{  vich_uploader_asset(post) | imagine_filter('squard_med') }}" alt="{{ post.title }}" class="w-100 rounded-top"></a>  
+      {% else %}
+       <a href="{{  path('app_posts_details',{id: post.id }) }}"><img src="{{  asset('images/placeholder.jpg') | imagine_filter('squard_med') }}" alt="{{ post.title }}" class="w-100 rounded-top"></a>
+      {% endif %}
+      </div>
+      <h2 class="h5 ps-5 pt-3 text-secondary text-muted">{{ post.title }}</h2> 
+      <p class="ps-5 pb-3 text-muted"><small>Submitted at {{ post.createdAt|ago }} by [OWNER]</small></p>
+      <h3 class="h6 ps-5 pt-3 text-secondary text-muted">{{ post.miniTitle }}</h3>
+      <h3 class="h6 ps-5 pt-3 text-secondary text-muted">{{ post.OneWordPov }} and {{ post.mark }}/10 </h3>
+      <p class="h6 ps-5 pt-3 text-secondary text-muted">Location : {{ post.location }}</p>
+      <div class="ps-5 pt-3">
       {{ post.reviewArticle }}
       </div>
-</article>
-<a href="{{  path('app_posts_edit',{id: post.id}) }}">Edit</a> |
-<a href="#" onclick="event.preventDefault(); confirm('Are you sure?') && document.getElementById('js-post-delete-form').submit(); ">Delete</a>
+     <div class="ps-3 pb-3"> 
+<a href="{{  path('app_posts_edit',{id: post.id}) }}" class="btn btn-light">Edit</a> 
+<a href="#" onclick="event.preventDefault(); confirm('Are you sure?') && document.getElementById('js-post-delete-form').submit(); " class="btn btn-light">Delete</a>
+ </div>
+  </article>
+
+
+</div>
+</div>
+
+
 
 <form id="js-post-delete-form" action="{{  path('app_posts_delete',{id: post.id}) }}" method="post" style="display:none;"> 
   <input type="hidden" name="csrf_token" value="{{ csrf_token('post_deletion'~ post.id) }}">
