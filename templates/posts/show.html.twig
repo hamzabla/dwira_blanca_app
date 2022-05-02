@@ -11,9 +11,9 @@
 <article class="bg-white rounded shadow post">
    <div class="mw-100 rounded-top overflow-hidden">
    {% if post.imageName %}
-      <a href="{{  path('app_posts_details',{id: post.id }) }}"><img src="{{  vich_uploader_asset(post) | imagine_filter('squard_med') }}" alt="{{ post.title }}" class="w-100 "></a>  
+      <img src="{{  vich_uploader_asset(post) | imagine_filter('squard_med') }}" alt="{{ post.title }}" class="w-100 ">  
       {% else %}
-       <a href="{{  path('app_posts_details',{id: post.id }) }}"><img src="{{  asset('images/placeholder.jpg') | imagine_filter('squard_med') }}" alt="{{ post.title }}" class="w-100 "></a>
+      <img src="{{  asset('images/placeholder.jpg') | imagine_filter('squard_med') }}" alt="{{ post.title }}" class="w-100 ">
       {% endif %}
       </div>
       <h2 class="h5 ps-5 pt-3 text-secondary text-muted">{{ post.title }}</h2> 
@@ -21,7 +21,7 @@
       <h3 class="h6 ps-5 pt-3 text-secondary text-muted">{{ post.miniTitle }}</h3>
       <h3 class="h6 ps-5 pt-3 text-secondary text-muted">{{ post.OneWordPov }} and {{ post.mark }}/10 </h3>
       <p class="h6 ps-5 pt-3 text-secondary text-muted">Location : {{ post.location }}</p>
-      <div class="ps-5 pt-3">
+      <div class="ps-5 pt-3 pe-5 text-break">
       {{ post.reviewArticle }}
       </div>
      <div class="ps-3 pb-3"> 
