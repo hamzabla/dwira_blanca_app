@@ -20,7 +20,7 @@
       {% endif %}
       </div>
       <h2 class="h5 ps-5 pt-3"><a href="{{  path('app_posts_details',{id: post.id }) }}" class="text-secondary text-muted text-decoration-none ">{{ post.title }}</a></h2>
-      <p class="ps-5 pb-3 text-muted"><small>Submitted at {{ post.createdAt|ago }} by [OWNER]</small></p>
+      <p class="ps-5 pb-3 text-muted"><small>Submitted at {{ post.createdAt|ago }} by {{ post.user.userName }} </small></p>
        </article>
        </div>
       {% endfor %}
