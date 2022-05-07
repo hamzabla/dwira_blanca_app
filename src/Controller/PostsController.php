@@ -6,6 +6,7 @@ use App\Entity\Post;
 use App\Form\PostType;
 use App\Repository\PostRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -56,9 +57,10 @@ class PostsController extends AbstractController
     }
 
     #[Route('/posts/{id<[0-9]+>}/edit}', name: 'app_posts_edit', methods:'GET|POST')]
+    #[Security("is_granted('ROLE_USER') && post.getUser()==user")]
     public function edit(Post $post,EntityManagerInterface $em,Request $request): Response
     {
-      $this->denyAccessUnlessGranted('ROLE_USER');
+      
       
       $form= $this->createForm(PostType::class, $post);
 
@@ -78,6 +80,7 @@ class PostsController extends AbstractController
     }
 
     #[Route('/posts/{id<[0-9]+>}', name: 'app_posts_delete', methods:'DELETE')]
+    #[Security("is_granted('ROLE_USER') && post.getUser()==user")]
     public function delete(Post $post,EntityManagerInterface $em,Request $request): Response
     {
       if($this->isCsrfTokenValid('post_deletion'.$post->getId(), $request->request->get('csrf_token'))){
