@@ -19,6 +19,7 @@ class PostsController extends AbstractController
     #[Route('/', name: 'app_posts',methods: 'GET')]
     public function index(PostRepository $postRepository): Response
     {
+       $this->denyAccessUnlessGranted('ROLE_USER');
         $post = $postRepository->findBy([],['createdAt'=>'DESC']);
         return $this->render('posts/index.html.twig', ['posts' => $post]);
     }
@@ -26,6 +27,7 @@ class PostsController extends AbstractController
     #[Route('/posts/create', name: 'app_posts_create', methods: 'GET|POST')]
     public function create(Request $request,EntityManagerInterface $em): Response
     {
+      $this->denyAccessUnlessGranted('ROLE_USER');
       $post = new Post;
       $form= $this->createForm(PostType::class,$post);
 
@@ -49,12 +51,14 @@ class PostsController extends AbstractController
     #[Route('/posts/{id<[0-9]+>}', name: 'app_posts_details', methods:'GET')]
     public function show(Post  $post): Response
     {
+      $this->denyAccessUnlessGranted('ROLE_USER');
       return $this->render('posts/show.html.twig', compact('post'));
     }
 
     #[Route('/posts/{id<[0-9]+>}/edit}', name: 'app_posts_edit', methods:'GET|POST')]
     public function edit(Post $post,EntityManagerInterface $em,Request $request): Response
     {
+      $this->denyAccessUnlessGranted('ROLE_USER');
       
       $form= $this->createForm(PostType::class, $post);
 

@@ -14,10 +14,7 @@ class ProfileController extends AbstractController
     #[Route('/profile', name: 'app_profile')]
     public function show(): Response
     {
-        if(! $this->getUser()){
-            $this->addFlash('error','you need to login first');
-             return  $this->redirectToRoute('app_login');
-        }
+        $this->denyAccessUnlessGranted('ROLE_USER');
 
         return $this->render('profile/show.html.twig');
     }
@@ -25,6 +22,7 @@ class ProfileController extends AbstractController
     #[Route('/profile/edit', name: 'app_profile_edit', methods:'GET|POST')]
     public function edit(Request $request,EntityManagerInterface $em): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
         $user= $this->getUser();
         $form= $this->createForm(UserFormType::class, $user);
         $form -> handleRequest($request);
