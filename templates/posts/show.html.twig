@@ -17,7 +17,7 @@
       {% endif %}
       </div>
       <h2 class="h5 ps-5 pt-3 text-secondary text-muted">{{ post.title }}</h2> 
-      <p class="ps-5 pb-3 text-muted"><small>Submitted at {{ post.createdAt|ago }} by [OWNER]</small></p>
+      <p class="ps-5 pb-3 text-muted"><small>Submitted at {{ post.createdAt|ago }} by {{ post.user.userName }}</small></p>
       <h3 class="h6 ps-5 pt-3 text-secondary text-muted">{{ post.miniTitle }}</h3>
       <h3 class="h6 ps-5 pt-3 text-secondary text-muted">{{ post.OneWordPov }} and {{ post.mark }}/10 </h3>
       <p class="h6 ps-5 pt-3 text-secondary text-muted">Location : {{ post.location }}</p>

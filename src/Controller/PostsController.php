@@ -32,6 +32,7 @@ class PostsController extends AbstractController
        $form->handleRequest($request);
 
        if($form->isSubmitted() && $form->isValid()){
+          $post->setUser($this->getUser());
           $em->persist($post);
           $em->flush();
 
