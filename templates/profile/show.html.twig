@@ -11,8 +11,8 @@
       
 
             <p class="lead"> {{ app.user.email }} </p>
-
-            <a href="#"> Edit Profile </a>
+                 <p><small>Account created at {{ app.user.createdAt|date('d/m/Y') }} </small></p>
+            <a href="{{  path('app_profile_edit')}}"> Edit Profile </a>
 
     </div>
 </div>
